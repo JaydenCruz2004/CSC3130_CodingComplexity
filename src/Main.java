@@ -4,16 +4,15 @@ public class Main {
 
     // Problem 1: Common subsequence
     public static int commonSequence(String text1, String text2) {
-        int count = 0;
+        int count = 0; // 0 (1)
         //boolean is used to deal with error that comes when both inputs are diff. length
-        boolean[] isLength = new boolean[text2.length()];
+        boolean[] isLength = new boolean[text2.length()]; //0(1)
 
-        for (int i = 0; i < text1.length(); i++) { // 0(n)
-            for (int j = 0; j < text2.length(); j++) { // 0(n)
-
-                if (text1.charAt(i) == text2.charAt(j) && !isLength[j]) {
-                    count++;
-                    isLength[j] = true;
+        for (int i = 0; i < text1.length(); i++) { // 0(n) where n is text1 length
+            for (int j = 0; j < text2.length(); j++) { // 0(m) where  m is text 2 length
+                if (text1.charAt(i) == text2.charAt(j) && !isLength[j]) { //0(1)
+                    count++; //0(1)
+                    isLength[j] = true; //0(1)
                     break; //stops the loop from double couting in some cases. if not the output is repeated for some char.
                 }
             }
@@ -24,8 +23,8 @@ public class Main {
 
     //Problem 2: Common Substring(text)
     public static String commonString(String text1, String text2) {
-        StringBuilder sb = new StringBuilder(); //a string is immutable, StringBuilder allow you to add.
-        int maxLength = 0;
+        StringBuilder sb = new StringBuilder(); //a string is immutable, StringBuilder allow you to add results
+        int maxLength = 0; //length of the longest substring
 
         //System.out.println(sb); //make sure that cS is empty
         //boolean[] isLength = new boolean[text2.length()];
@@ -34,7 +33,8 @@ public class Main {
         for (int i = 0; i < text1.length(); i++) { // 0(n)
             for (int j = 0; j < text2.length(); j++) { // 0(n)
                 int length = 0;
-                while (i + length < text1.length() && j + length < text2.length()
+                //check how far the substrings match
+                while (i + length < text1.length() && j + length < text2.length() //0(amount times loops checks i and j)
                         && text1.charAt(i + length) == text2.charAt(j + length)) {
                     length++;
                 }
@@ -108,16 +108,18 @@ public class Main {
     //Problem 5: Remove Element
     public static int removeElement(int[] nums, int val) {
         //keep tracks of non target nums
-        int nonVal = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
-                nums[nonVal] = nums[i];
-                nonVal++;
+        int nonVal = 0; //0(1)
+        for (int i = 0; i < nums.length; i++) { //0(n) where n is the num of elements in nums array
+            if (nums[i] != val) { //0 (1)
+                nums[nonVal] = nums[i]; //0(1)
+                nonVal++; //0(1)
             }
         }
         // number of elements not equal to val
         return nonVal;
     }
+    // time complexity 0(n) best and worse case the same
+    // so we can say big theta: 0(n)
 
 
     public static void main(String[] args) {
