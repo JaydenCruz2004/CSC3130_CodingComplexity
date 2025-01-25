@@ -13,7 +13,7 @@ public class Main {
 
                 if (text1.charAt(i) == text2.charAt(j) && !isLength[j]) {
                     count++;
-                    isLength[i] = true;
+                    isLength[j] = true;
                     break; //stops the loop from double couting in some cases. if not the output is repeated for some char.
                 }
             }
@@ -26,6 +26,7 @@ public class Main {
     public static String commonString(String text1, String text2) {
         StringBuilder sb = new StringBuilder(); //a string is immutable, StringBuilder allow you to add.
         int maxLength = 0;
+
         //System.out.println(sb); //make sure that cS is empty
         //boolean[] isLength = new boolean[text2.length()];
 
@@ -106,25 +107,24 @@ public class Main {
 
     //Problem 5: Remove Element
     public static int removeElement(int[] nums, int val) {
-        //non target numbers
-        int index = 0;
-        // Loop through the array
+        //keep tracks of non target nums
+        int nonVal = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != val) {
-                nums[index] = nums[i];
-                index++;
+                nums[nonVal] = nums[i];
+                nonVal++;
             }
         }
         // number of elements not equal to val
-        return index;
+        return nonVal;
     }
 
 
     public static void main(String[] args) {
-        String text1 = "almanacs";
-        String text2 = "albatross";
-        //String text1 = "spy family";
-        //String text2 = "jujutsu kaisen";
+        //String text1 = "almanacs";
+        //String text2 = "albatross";
+        String text1 = "gears of war";
+        String text2 = "History of warriors";
 
         int[] nums = {0, 1, 2, 2, 3, 0, 4, 2};
         int val = 2;
