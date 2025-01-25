@@ -86,22 +86,18 @@ public class Main {
         return whereInSequence(resultArr, i);
     }
 
-    public static long dondeInSequence(long n) {
+    public static int dondeInSequence(int n) {
         int i = 0;
-        for (i = 0; i < 10; i++) {
-            while (true) {
-                notFib(i);
-                if (notFib(i) == n) {
-                    return i + 1;
-                }
-
-                if (notFib(i) > n) {
-                    return i;
-                }
-
+        while (true) {
+            notFib(i);
+            if (notFib(i) > n) {
+                return i + 1;
             }
+            if (notFib(i) == n) {
+                return i + 1;
+            }
+            i++;
         }
-        return n;
     }
 
     //Problem 5: Remove Element
@@ -115,7 +111,7 @@ public class Main {
                 index++;  // Increment index to move to the next available position
             }
         }
-        // `index` now represents the new length of the array with `val` removed
+       //return number of elements not equal to val
         return index;
     }
 
@@ -141,5 +137,14 @@ public class Main {
 
         //Problem 5: Remove Element
         System.out.println("Problem 5 Output: " + removeElement(nums, val));
+
+        //Problem: Extra Credit:
+        //long[] extra = notFibonacci(1000);
+        //System.out.println("Extra Credit: " + Arrays.toString(extra));
+        // each time the notFib is called your creating the resucrive tree we saw in calss over and over again but 1000
+        // thats why it takes no long, the tree get bigger and bigger each time.
+        // also in comp org we learned about integer overflow when the int is larger than the max value the variable can hold
+        //java int (-2147483648 to 2147483647)
+        // java long (-9223372036854775808 to 9223372036854775807)
     }
 }
