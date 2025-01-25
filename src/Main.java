@@ -1,4 +1,7 @@
+import java.util.Arrays;
+
 public class Main {
+
     // Problem 1: Common subsequence
     public static int commonSequence(String text1, String text2) {
         int count = 0;
@@ -19,13 +22,14 @@ public class Main {
         return count;
     }
 
-    //Problem 2: Common Substring
+    //Problem 2: Common Substring(text)
     public static String commonString(String text1, String text2) {
-        StringBuilder sb = new StringBuilder(); //a string is immutable stringbuilder.
+        StringBuilder sb = new StringBuilder(); //a string is immutable StringBuilder.
         int maxLength = 0;
         //System.out.println(sb); //make sure that cS is empty
         //boolean[] isLength = new boolean[text2.length()];
 
+        //reusing loops from problem1
         for (int i = 0; i < text1.length(); i++) { // 0(n)
             for (int j = 0; j < text2.length(); j++) { // 0(n)
                 int length = 0;
@@ -44,34 +48,60 @@ public class Main {
     }
 
     //Problem 3: Not Fibonacci
-    public static Long notFibonacci(long n) {
+    public static Long notFib(long n) {
         if (n < 0) { // 0(1)
             return 0L; // 0 (1)
         }
         if (n <= 1) {
             return n;
         } else {
-            return 3 * notFibonacci(n - 1) + 2 * notFibonacci(n - 2); // 0(3/2^2) exponential
+            return 3 * notFib(n - 1) + 2 * notFib(n - 2); // 0(3/2^2) exponential
         }
     }
 
-    // Problem 4: Where in Sequence
-    public static long whereInSequence(long n) {
-        //long[] track = new long[(int) (n + 1)];
-        int count = 0;
+    public static long[] notFibonacci(long n) {
+        long[] resultArr = new long[(int) n];
 
-        if (n < 0) { // 0(1)
-            return 0L; // 0 (1)
+        for (int i = 0; i < n; i++) {
+            resultArr[i] = notFib(i);
+            //System.out.println(notFib(i));
         }
-        if (n <= 1) {
-            return n;
-        } else {
-            //for (int i = 0; i < track.length; i++) {}
-            //n = 3 * whereInSequence(n - 1) + 2 * whereInSequence(n - 2);
-            //track[count] = n;
-            //count ++;
-            return n; // 0(3/2^2) exponential
+        return resultArr;
+    }
+
+    // Problem 4: Where in Sequence
+    //parameters are the array from the notFibonacci method and int n, the integer you want the position of
+    public static long whereInSequence(long[] resultArr, int n) {
+        int i = 0;
+        for (i = 0; i < resultArr.length; i++) {
+            if (resultArr[i] > n) {
+                return i - 1;
+            }
+            if (resultArr[i] == n) {
+                return i + 1;
+            } else {
+                i = i + 2;
+            }
         }
+        return whereInSequence(resultArr, i);
+    }
+
+    public static long dondeInSequence(long n) {
+        int i = 0;
+        for (i = 0; i < 10; i++) {
+            while (true) {
+                notFib(i);
+                if (notFib(i) == n) {
+                    return i + 1;
+                }
+
+                if (notFib(i) > n) {
+                    return i;
+                }
+
+            }
+        }
+        return n;
     }
 
     //Problem 5: Remove Element
@@ -99,20 +129,17 @@ public class Main {
         int[] nums = {0, 1, 2, 2, 3, 0, 4, 2};
         int val = 2;
 
-        System.out.println(commonSequence(text1, text2));
-        System.out.println(commonString(text1, text2));
+        System.out.println("Problem 1 Output: " + commonSequence(text1, text2));
+        System.out.println("Problem 2 Output: " + commonString(text1, text2));
 
         //Problem 3: Not Fibonacci
-        long n = 11;
-        for (int i = 0; i < n; i++) {
-            System.out.println(notFibonacci(i));
-        }
-        //System.out.println(notFibonacci(10));
+        long[] answer = notFibonacci(10);
+        System.out.println("Problem 3 Output: " + Arrays.toString(answer));
 
         //Problem 4: Where in Sequence
-        System.out.println(whereInSequence(10));
+        System.out.println("Problem 4 Output: " + dondeInSequence(8));
 
         //Problem 5: Remove Element
-        System.out.println(removeElement(nums, val));
+        System.out.println("Problem 5 Output: " + removeElement(nums, val));
     }
 }
