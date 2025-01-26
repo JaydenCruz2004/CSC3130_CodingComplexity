@@ -1,3 +1,7 @@
+// CSC 3130: Introduction to Algorithms
+// Assignment 1: Coding and Complexity
+// Created by: Jayden Cruz
+
 import java.util.Arrays;
 
 public class Main {
