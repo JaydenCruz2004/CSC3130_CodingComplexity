@@ -51,9 +51,9 @@ The complete implementation of the code, along with the analysis of the algorith
 
 ## Grading Rubric:
 
-| Item                        | Points |
-| --------------------------- | ------ |
-| Coding Challenges            | 90     |
-| Algorithm Analysis           | 20     |
+| Item                        | Points  |
+| --------------------------- |---------|
+| Coding Challenges            | 80      |
+| Algorithm Analysis           | 20      |
 | **Total**                    | **100** |
 
