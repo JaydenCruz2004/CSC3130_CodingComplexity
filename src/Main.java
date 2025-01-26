@@ -61,7 +61,7 @@ public class Main {
         if (n <= 1) {
             return n;
         } else {
-            return 3 * notFib(n - 1) + 2 * notFib(n - 2); // 0(3/2^2) exponential
+            return 3 * notFib(n - 1) + 2 * notFib(n - 2); // 0(2^n) exponential
         }
     }
 
